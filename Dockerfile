@@ -8,8 +8,6 @@ SHELL ["/bin/bash", "-c"]
 
 WORKDIR /app
 
-COPY . /app
-
 # Install packages
 RUN apt-get update && apt-get install -y \
     python3-dev \
@@ -29,8 +27,11 @@ ENV PATH="/usr/local/cuda/bin:${PATH}"
 # Set environment variables for unbuffered output
 ENV PYTHONUNBUFFERED=1
 
+COPY ./requirements.txt /app
 # Install any dependencies if needed
 RUN pip install -r requirements.txt
+
+COPY . /app
 
 # Expose the port that Uvicorn will run on
 EXPOSE 8000

@@ -30,7 +30,7 @@ ENV PATH="/usr/local/cuda/bin:${PATH}"
 ENV PYTHONUNBUFFERED=1
 
 # Install any dependencies if needed
-RUN pip install -r fastapi uvicorn pytorch ultralytics
+RUN pip install -r requirements.txt
 
 # Expose the port that Uvicorn will run on
 EXPOSE 8000

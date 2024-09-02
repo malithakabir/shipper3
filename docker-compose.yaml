@@ -6,4 +6,5 @@ services:
     container_name: python_app
     ports:
       - "8000:8000"  # Adjust if your app uses a different port
-    hostname: $HOSTNAME
+    environment:
+      - HOSTNAME=$HOSTNAME

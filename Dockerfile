@@ -10,12 +10,6 @@ WORKDIR /app
 
 COPY . /app
 
-# Set environment variables
-ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
-ENV PATH="/usr/local/cuda/bin:${PATH}"
-# Set environment variables for unbuffered output
-ENV PYTHONUNBUFFERED=1
-
 # Install packages
 RUN apt-get update && apt-get install -y \
     python3-dev \
@@ -27,6 +21,12 @@ RUN apt-get update && apt-get install -y \
     && curl -O -L "https://github.com/grafana/loki/releases/download/v3.1.1/promtail-linux-amd64.zip" \
     && unzip promtail-linux-amd64.zip \
     && chmod +x promtail-linux-amd64
+
+# Set environment variables
+ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
+ENV PATH="/usr/local/cuda/bin:${PATH}"
+# Set environment variables for unbuffered output
+ENV PYTHONUNBUFFERED=1
 
 # Install any dependencies if needed
 RUN pip install -r fastapi uvicorn pytorch ultralytics

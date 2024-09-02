@@ -19,6 +19,10 @@ ENV PATH="/usr/local/cuda/bin:${PATH}"
 
 # Install packages
 RUN apt-get update && apt-get install -y \
+    python3-dev \
+    python3-pip \
+    build-essential \
+    git \
     unzip \
     supervisor \
     && rm -rf /var/lib/apt/lists/* \
